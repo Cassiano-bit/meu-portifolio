@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Meu Portfólio</title>
+</head>
+
+<body>
+    <!-- Fundo com efeito de partículas -->
+    <div class="particulas"></div>
+    <!-- Menu de navegação -->
+    <nav class="navegacao">
+        <ul class="menu">
+            <li><a href="#inicio" class="menu-link">Início</a></li>
+            <li><a href="#sobre" class="menu-link">Sobre</a></li>
+            <li><a href="#projetos" class="menu-link">Projetos</a></li>
+            <li><a href="#contato" class="menu-link">Contato</a></li>
+        </ul>
+    </nav>
+    <!-- Cabeçalho -->
+    <main id="inicio" class="cabecalho">
+        <img src="img/logo.jpeg" alt="Meu Logo" class="foto-de-perfil">
+        <h1>Bem-vindo ao meu Portiofólio</h1>
+        <p class="cabecalho-subtitulo">
+            Sou um profissional criativo, apaixonado por arte, música e pelo desenvolvimento de projetos que transformam
+            ideias em experiências. Meu trabalho une sensibilidade artística, dedicação e atenção aos detalhes, buscando
+            sempre oferecer resultados de qualidade e uma experiência especial para cada cliente.
+        </p>
+    </main>
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <h2 class="sobre-titulo">Sobre mim</h2>
+        <div class="sobre-caixa">
+            <p class="sobre-paragrafo">
+            <ul class="habilidades-lista">
+                <li>🎵 Música e Educação Musical</li>
+                <li>💻 Desenvolvimento Web</li>
+                <li>🎨 Criatividade e Design</li>
+                <li>📱 Comunicação e Marketing</li>
+                <li>🚀 Empreendedorismo</li>
+                <li>📊 Organização e Planejamento</li>
+            </ul>
+            </p>
+        </div>
+    </section>
+    <!-- Projetos -->
+    <section id="projetos" class="projetos">
+        <h2 class="projetos-titulo">Meus Projetos</h2>
+        <div class="projetos-caixa">
+            <!-- Projeto 1 -->
+            <div class="projetos-card">
+                <img src="img/Captura de pantalla 2026-09-05 234315.png" alt="Projeto 1" class="projeto-imagem">
+                <div class="caixa-textos-projeto">
+                    <h3 class="info-projetos">As 7 Maravilhas do Mundo</h3>
+                    <p class="paragrafo-projetos">
+                        Projeto desenvolvido em HTML, CSS e JavaScript sobre as 7 Maravilhas do Mundo, com carrossel automático de imagens, navegação manual por botões e links para a localização de cada monumento no Google Maps. O objetivo foi praticar estruturação de páginas, estilização e interatividade com JavaScript.
+                    </p>
+                </div>
+            </div>
+            <!-- Projeto 2 -->
+            <div class="projetos-card">
+                <img src="img/Screenshot 2026-09-15 134904_edited.png" alt="Projeto 2" class="projeto-imagem">
+                <div class="caixa-textos-projeto">
+                    <h3 class="info-projetos">IF Ateliê</h3>
+                    <p class="paragrafo-projetos">
+                        O IF Ateliê é um projeto desenvolvido para apresentar um ateliê de forma elegante e acolhedora no ambiente digital. O site reúne informações sobre a marca, seus produtos e trabalhos artesanais, valorizando a identidade visual e facilitando o contato com o público. O projeto foi construído utilizando HTML e CSS, com foco em uma navegação simples, organização do conteúdo e uma estética delicada que representa a proposta do ateliê.
+                    </p>
+                </div>
+            </div>
+            <!-- Projeto 3 -->
+            <div class="projetos-card">
+                <img src="projeto3.jpg" alt="Projeto 3" class="projeto-imagem">
+                <div class="caixa-textos-projeto">
+                    <h3 class="info-projetos">Projeto 3</h3>
+                    <p class="paragrafo-projetos">
+                        Descrição do Projeto 3.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contato -->
+    <section id="contato" class="contatos">
+        <h2 class="contatos-titulo">Contato</h2>
+        <form class="formulario-contato" id="formulario">
+            <div class="grupo-form">
+                <input type="text" placeholder="Nome" class="campo-form" id="nome" required>
+            </div>
+            <div class="grupo-form">
+                <textarea class="campo-form" placeholder="Digite sua Mensagem" id="mensagem" rows="6"
+                    required></textarea>
+            </div>
+
+            <button type="submit" class="botao-form">
+                Enviar WhatsApp
+            </button>
+        </form>
+    </section>
+    <!-- JavaScript -->
+    <script>
+        function enviarWhats(event) {
+            // Impede o formulário de recarregar a página
+            event.preventDefault();
+            // Pega o nome digitado
+            const nome = document.getElementById('nome').value;
+            // Pega a mensagem digitada
+            const mensagem = document.getElementById('mensagem').value;
+            // Número do WhatsApp
+            const telefone = '5544984618146';
+            // Monta o texto da mensagem
+            const texto = `Olá! Me chamo ${nome}. ${mensagem}`;
+            // Codifica a mensagem para funcionar na URL
+            const msgFormatada = encodeURIComponent(texto);
+            // Cria o link do WhatsApp
+            const url = `https://wa.me/${telefone}?text=${msgFormatada}`;
+            // Abre o WhatsApp em uma nova aba
+            window.open(url, '_blank');
+        }
+        // Quando o formulário for enviado, executa a função
+        document.getElementById('formulario').addEventListener('submit', enviarWhats);
+    </script>
+</body>
+</html>

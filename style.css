@@ -1,0 +1,447 @@
+/* =========================================================
+   1. CONFIGURAÇÃO GERAL
+   ========================================================= */
+/* Remove as margens e os espaçamentos padrão que o navegador
+   coloca nos elementos. O box-sizing facilita o controle
+   do tamanho das caixas. A fonte será usada em toda a página. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* Faz a página deslizar suavemente quando clicamos em um
+   link que leva para outra seção, como #sobre ou #contato. */
+html {
+    scroll-behavior: smooth;
+}
+/* =========================================================
+   2. VARIÁVEIS
+   ========================================================= */
+/* As variáveis permitem reutilizar os mesmos valores
+   em várias partes do CSS. */
+:root {
+    --primaria: #4f46e5;
+    --secundaria: #7c3aed;
+    --escuro: #0f172a;
+    --maisEscuro: #0a0f1c;
+    --claro: #e2e8f0;
+    --vidro: rgba(255, 255, 255, 0.1);
+}
+/* =========================================================
+   3. CORPO DA PÁGINA
+   ========================================================= */
+/* Define a aparência geral do corpo da página.
+   O body ocupa toda a página e recebe a cor do texto. */
+body {
+    background-color: var(--escuro);
+    color: var(--claro);
+}
+/* =========================================================
+   4. MENU DE NAVEGAÇÃO
+   ========================================================= */
+/* position: fixed mantém o menu preso à tela.
+   top: 0 coloca o menu no topo.
+   width: 100% faz o menu ocupar toda a largura.
+   z-index: 1000 coloca o menu acima de outros elementos. */
+.navegacao {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(15, 23, 42, 0.8);
+    z-index: 1000;
+    padding: 1.5rem;
+}
+/* display: flex coloca os links lado a lado.
+   justify-content: center centraliza os links.
+   list-style: none remove as bolinhas da lista.
+   gap cria espaço entre os links. */
+.menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+/* Remove o sublinhado padrão dos links.
+   position: relative permite posicionar a linha
+   que será criada com ::after. */
+.menu-link {
+    text-decoration: none;
+    color: var(--claro);
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+/* ::after cria um elemento visual depois do link.
+   Ele será usado como uma linha que aparece embaixo.
+   width: 0% significa que a linha começa invisível. */
+.menu-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        var(--primaria),
+        var(--secundaria)
+    );
+    /* Faz a linha aparecer gradualmente. */
+    transition: width 0.5s ease;
+}
+/* Quando o mouse passa sobre o link, a largura da
+   linha aumenta de 0% para 100%. */
+.menu-link:hover::after {
+    width: 100%;
+}
+/* =========================================================
+   5. CABEÇALHO
+   ========================================================= */
+/* min-height: 100vh faz o cabeçalho ocupar pelo menos
+   toda a altura da tela.
+   display: flex ativa o Flexbox.
+   justify-content centraliza os elementos verticalmente.
+   align-items centraliza os elementos horizontalmente.
+   flex-direction: column coloca os elementos um abaixo do outro. */
+.cabecalho {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* Define o tamanho da imagem de perfil.
+   border-radius: 50% transforma a imagem em um círculo.
+   animation aplica a animação chamada flutuar. */
+.foto-de-perfil {
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+    border-radius: 50%;
+    border: 4px solid var(--vidro);
+   animation: flutuar 5s ease-in-out infinite;
+}
+/* Estiliza o título principal.
+   margin cria espaço ao redor do título. */
+h1 {
+    font-size: 3.5rem;
+    color: var(--primaria);
+    font-weight: bold;
+    margin: 20px;
+}
+/* Define o tamanho e o alinhamento do subtítulo.
+   max-width limita a largura do texto para ele não ficar
+   muito espalhado em telas grandes.
+   margin: 0 auto centraliza a caixa.
+   text-align: center centraliza o texto.
+   line-height aumenta o espaço entre as linhas. */
+.cabecalho-subtitulo {
+    font-size: 1.5rem;
+    color: var(--claro);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+}
+/* =========================================================
+   6. SEÇÃO SOBRE
+   ========================================================= */
+/* padding cria espaço interno na seção.
+   O primeiro valor é o espaço vertical.
+   O segundo valor é o espaço horizontal. */
+.sobre {
+    padding: 6rem 2rem;
+}
+/* Estiliza o título da seção Sobre. */
+.sobre-titulo {
+    font-size: 2.5rem;
+    color: var(--claro);
+    text-align: center;
+   margin-bottom: 20px;
+}
+/* Cria uma caixa para organizar o conteúdo da seção.
+   max-width impede que ela fique larga demais.
+   margin: 0 auto centraliza a caixa.
+   border-radius arredonda os cantos.
+   backdrop-filter cria o efeito de desfoque no fundo. */
+.sobre-caixa {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid var(--vidro);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+/* Limita a largura do parágrafo para facilitar a leitura.
+   line-height aumenta o espaço entre as linhas.
+   text-align: justify deixa as linhas alinhadas dos dois lados. */
+.sobre-paragrafo {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* =========================================================
+   7. SEÇÃO DE PROJETOS
+   ========================================================= */
+/* Define o espaçamento interno da seção. */
+.projetos {
+    padding: 6rem 2rem;
+}
+/* Estiliza o título da seção de projetos. */
+.projetos-titulo {
+    font-size: 2.5rem;
+    color: var(--claro);
+    text-align: center;
+    margin-bottom: 50px;
+}
+/* display: grid organiza os projetos em uma grade.
+   repeat(auto-fit, minmax(...)) faz a grade se adaptar
+   ao tamanho da tela.
+   auto-fit tenta colocar o máximo de cards possível
+   em cada linha.
+   minmax(300px, 1fr) significa:
+   - cada card terá pelo menos 300px;
+   - quando houver espaço, poderá crescer.
+   gap cria espaço entre os cards.
+   max-width limita a largura total da grade. */
+.projetos-caixa {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(300px, 1fr)
+    );
+    gap: 2rem;
+    max-width: 1200px;
+   margin: 0 auto;
+}
+/* Cada projeto será apresentado dentro de um card.
+   overflow: hidden impede que a imagem ultrapasse
+   os cantos arredondados do card. */
+.projetos-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--vidro);
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+/* :hover aplica estilos quando o mouse passa sobre o card.
+   transform movimenta o card para cima e aumenta um pouco
+   o tamanho dele.
+   cursor: pointer transforma o cursor em uma mãozinha. */
+.projetos-card:hover {
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.3);
+    transform: translateY(-10px) scale(1.03);
+    cursor: pointer;
+}
+/* A imagem ocupa toda a largura do card.
+   object-fit: cover faz a imagem preencher o espaço
+   sem ficar deformada. */
+.projeto-imagem {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+/* Cria espaçamento interno para os textos do projeto. */
+.caixa-textos-projeto {
+    padding: 1.5rem;
+}
+/* Cria um pequeno espaço abaixo do título do projeto. */
+.info-projetos {
+    margin-bottom: 5px;
+}
+/* Define o espaçamento entre as linhas da descrição. */
+.paragrafo-projetos {
+    color: rgba(226, 232, 240, 0.8);
+    line-height: 1.25rem;
+    text-align: justify d rapids, afortunately;
+}
+
+/* =========================================================
+   8. SEÇÃO DE CONTATO
+   ========================================================= */
+
+/* Define o espaçamento interno da seção de contato. */
+.contatos {
+    padding: 6rem 2rem;
+}
+
+/* Estiliza o título da seção de contato. */
+.contatos-titulo {
+    font-size: 2.5rem;
+    color: var(--claro);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Cria a caixa principal do formulário.
+   max-width limita a largura para o formulário não ficar
+   muito grande em telas maiores.
+   margin: 0 auto centraliza o formulário. */
+.formulario-contato {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    padding: 2rem;
+    border: 1px solid var(--vidro);
+    border-radius: 16px;
+}
+/* Cada grupo de formulário ocupa toda a largura disponível.
+   padding cria espaço interno.
+   margin-bottom separa um campo do outro.
+   outline: none remove o contorno padrão do navegador. */
+.grupo-form {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: var(--claro);
+    border: 1px solid var(--vidro);
+    outline: none;
+    margin-bottom: 1.5rem;
+}
+
+/* Os campos ocupam toda a largura do grupo.
+   background: transparent deixa o fundo transparente.
+   border: none remove a borda padrão do input.
+   outline: none remove o contorno padrão ao clicar. */
+.campo-form {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--claro);
+    font-size: 1rem;
+}
+/* Estiliza o texto que aparece dentro do campo
+   antes de o usuário começar a digitar. */
+.campo-form::placeholder {
+    color: rgba(226, 232, 240, 0.7);
+}
+/* :focus aplica o efeito quando o usuário clica
+   ou começa a digitar no campo. */
+.campo-form:focus {
+    border-color: var(--secundaria);
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+}
+/* Estiliza o botão do formulário.
+   width: 100% faz o botão ocupar toda a largura
+   disponível dentro do formulário. */
+.botao-form {
+    color: var(--claro);
+    background: linear-gradient(
+        45deg,
+        var(--primaria),
+        var(--secundaria)
+    );
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+/* Quando o mouse passa sobre o botão, ele sobe
+   levemente e recebe uma sombra. */
+.botao-form:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+}
+
+/* =========================================================
+   9. FUNDO COM PARTÍCULAS
+   ========================================================= */
+/* position: fixed mantém o fundo preso à tela.
+   width e height fazem ele ocupar toda a tela.
+   z-index: -1 coloca o fundo atrás do conteúdo.
+   opacity controla a transparência. */
+.particulas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            var(--primaria) 0%,
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            var(--secundaria) 0%,
+            transparent 20%
+        ),
+        var(--maisEscuro);
+}
+
+
+/* =========================================================
+   10. ANIMAÇÃO DA IMAGEM
+   ========================================================= */
+
+/* @keyframes define os passos de uma animação.
+   No início e no final, a imagem fica na posição normal.
+   No meio, ela sobe 20px.
+   
+   O nome flutuar é o mesmo usado na propriedade
+   animation da imagem de perfil. */
+@keyframes flutuar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* =========================================================
+   11. LISTA DE HABILIDADES
+   ========================================================= */
+
+/* Remove as bolinhas da lista.
+   display: grid organiza as habilidades em uma grade.
+   repeat(2, 1fr) cria duas colunas de tamanho igual.
+   gap cria espaço entre os itens.
+   margin-top separa a lista do parágrafo. */
+.habilidades-lista {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 0;
+}
+
+/* Cada habilidade funciona como um pequeno card.
+   padding cria espaço interno.
+   text-align centraliza o texto.
+   transition deixa os efeitos mais suaves. */
+.habilidades-lista li {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--vidro);
+    border-radius: 8px;
+    color: var(--claro);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Quando o mouse passa sobre uma habilidade,
+   ela sobe levemente e recebe uma sombra. */
+.habilidades-lista li:hover {
+    transform: translateY(-4px);
+    border-color: var(--secundaria);
+    box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
+}
